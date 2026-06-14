@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rock Birthday Finder</title>
+<style>
+body{margin:0;background:#0f0f0f;color:#fff;font-family:Arial,sans-serif}
+.container{max-width:900px;margin:auto;padding:20px;text-align:center}
+h1{font-size:3rem}
+.search{background:#1b1b1b;padding:20px;border-radius:16px}
+select,input,button{padding:12px;margin:8px;border-radius:10px;border:none}
+button{background:#c1121f;color:#fff;font-weight:bold;cursor:pointer}
+.card{display:none;background:#1b1b1b;margin-top:20px;padding:20px;border-radius:16px}
+.card img{width:100%;max-width:450px;border-radius:12px}
+.band{color:#ff6b6b}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🤘 Rock Birthday Finder</h1>
+<div class="search">
+<select id="month">
+<option>January</option><option>February</option><option>March</option>
+<option>April</option><option>May</option><option>June</option>
+<option>July</option><option>August</option><option>September</option>
+<option>October</option><option>November</option><option>December</option>
+</select>
+<input id="day" type="number" min="1" max="31" placeholder="Day">
+<button onclick="findRockstar()">Find My Rockstar</button>
+</div>
+
+<div id="card" class="card">
+<img id="photo" src="">
+<h2 id="name"></h2>
+<h3 id="band" class="band"></h3>
+<p id="desc"></p>
+<button onclick="randomRockstar()">🎸 Meet Another Rockstar</button>
+</div>
+</div>
+
+<script>
+const artists=[
+{m:"January",s:1,e:14,n:"Ozzy Osbourne",b:"Black Sabbath",p:"images/ozzy-osbourne.jpg",d:"Prince of Darkness and heavy metal pioneer."},
+{m:"January",s:15,e:31,n:"Lemmy",b:"Motörhead",p:"images/lemmy.jpg",d:"Legendary bassist and frontman."},
+{m:"February",s:1,e:14,n:"Kerry King",b:"Slayer",p:"images/kerry-king.jpg",d:"Thrash metal guitar icon."},
+{m:"February",s:15,e:29,n:"Marty Friedman",b:"Megadeth",p:"images/marty-friedman.jpg",d:"Known for melodic technical solos."},
+{m:"March",s:1,e:14,n:"Jimi Hendrix",b:"Jimi Hendrix Experience",p:"images/jimi-hendrix.jpg",d:"One of the greatest guitarists ever."},
+{m:"March",s:15,e:31,n:"Lars Ulrich",b:"Metallica",p:"images/lars-ulrich.jpg",d:"Metallica co-founder and drummer."},
+{m:"April",s:1,e:14,n:"Dimebag Darrell",b:"Pantera",p:"images/dimebag-darrell.jpg",d:"Beloved metal guitar hero."},
+{m:"April",s:15,e:30,n:"Phil Collins",b:"Genesis",p:"images/phil-collins.jpg",d:"Singer, songwriter and drummer."},
+{m:"May",s:1,e:14,n:"Kirk Hammett",b:"Metallica",p:"images/kirk-hammett.jpg",d:"Master of iconic solos."},
+{m:"May",s:15,e:31,n:"Axl Rose",b:"Guns N' Roses",p:"images/axl-rose.jpg",d:"One of rock's biggest frontmen."},
+{m:"June",s:1,e:14,n:"2-D",b:"Gorillaz",p:"images/2d.jpg",d:"Animated Gorillaz vocalist."},
+{m:"June",s:15,e:30,n:"Murdoc Niccals",b:"Gorillaz",p:"images/murdoc.jpg",d:"Chaotic Gorillaz bassist."},
+{m:"July",s:1,e:14,n:"Dave Mustaine",b:"Megadeth",p:"images/dave-mustaine.jpg",d:"Founder of Megadeth."},
+{m:"July",s:15,e:31,n:"Slash",b:"Guns N' Roses",p:"images/slash.jpg",d:"Top hat and legendary solos."},
+{m:"August",s:1,e:14,n:"Kurt Cobain",b:"Nirvana",p:"images/kurt-cobain.jpg",d:"Voice of grunge."},
+{m:"August",s:15,e:31,n:"Dave Grohl",b:"Foo Fighters",p:"images/dave-grohl.jpg",d:"Rock icon and songwriter."},
+{m:"September",s:1,e:14,n:"Fred Durst",b:"Limp Bizkit",p:"images/fred-durst.jpg",d:"Nu metal frontman."},
+{m:"September",s:15,e:30,n:"Serj Tankian",b:"System of a Down",p:"images/serj-tankian.jpg",d:"Unique and powerful vocalist."},
+{m:"October",s:1,e:14,n:"James Hetfield",b:"Metallica",p:"images/james-hetfield.jpg",d:"Legendary rhythm guitarist."},
+{m:"October",s:15,e:31,n:"Corey Taylor",b:"Slipknot",p:"images/corey-taylor.jpg",d:"Slipknot vocalist."},
+{m:"November",s:1,e:14,n:"Synyster Gates",b:"Avenged Sevenfold",p:"images/synyster-gates.jpg",d:"Virtuoso lead guitarist."},
+{m:"November",s:15,e:30,n:"Freddie Mercury",b:"Queen",p:"images/freddie-mercury.jpg",d:"The legendary frontman of Queen, famous for his incredible voice, stage presence and timeless songs."},
+{m:"December",s:1,e:14,n:"Michael Jackson",b:"Solo Artist",p:"images/michael-jackson.jpg",d:"Known as the King of Pop, Michael Jackson became one of the most influential entertainers in music history."},
+{m:"December",s:15,e:31,n:"Rob Zombie",b:"Solo",p:"images/rob-zombie.jpg",d:"Musician and filmmaker."}
+];
+
+function show(a){
+card.style.display='block';
+photo.src=a.p; name.textContent=a.n; band.textContent=a.b; desc.textContent=a.d;
+}
+function findRockstar(){
+const m=month.value,d=Number(day.value);
+const a=artists.find(x=>x.m===m&&d>=x.s&&d<=x.e);
+if(a) show(a); else alert('Invalid day');
+}
+function randomRockstar(){ show(artists[Math.floor(Math.random()*artists.length)]); }
+</script>
+</body></html>
